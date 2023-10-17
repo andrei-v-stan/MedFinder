@@ -1,0 +1,14 @@
+This is the workload file for the student Stan Andrei-Vlăduț (UAIC - FII - MISS11)
+
+Lab 1:
+	- Gathered 2 students before and 2 during the lab to make up a 5 man team
+	- Chose 3 main projects presented by Dr. Iftene Adrian and discussed with the coleagues which project was the most approcable for everyone
+	- Created a Discord server and invited the other 4 members of the team
+	- Made contact with our coordonator Ciprian Amaritei and talked about a possible future meeting
+	- Talked with everyone and established a date and time for which the meeting would be held via Google Meet
+	
+Lab 2:
+	- Held the Google Meet with everyone involved where we disscused our ideas and the possible project concept (written in the first page of the Google Doc)
+	- Created a Github repository, a Trello board and a Google Doc where the entire team was invited
+	- Created the workload folder and files so that everyone can write down and track what they've done
+	- Created README.md project file with a temp project name
