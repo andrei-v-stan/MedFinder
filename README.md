@@ -33,6 +33,6 @@
 []()
 ### Useful links:
 *   #### [Trello](https://trello.com/invite/b/mwgy2nGg/ATTIb417aad4c21049ae387df7edbf2ba84cDE1CBBFE/taiphealthapp)
-*   #### [Google Doc](https://docs.google.com/document/d/1ziq68NxaCB2G5pbSAw0fn4tFTaMGIDWImd6iYynlLB4/edit?usp=sharing)
+*   #### [Google Drive Folder](https://docs.google.com/document/d/1ziq68NxaCB2G5pbSAw0fn4tFTaMGIDWImd6iYynlLB4/edit?usp=sharing](https://drive.google.com/drive/folders/1xMF3OMF0iCrHg5m3gyKxItlrhSG40ngA?usp=sharing)
 *   #### [Workload Txts](https://github.com/andrei-v-stan/TAIP_Health_App/tree/main/Workload)
 
