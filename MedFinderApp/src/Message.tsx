@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+
 export function HelloMessage() {
     const name = "ASV";
     if (name) {
@@ -8,6 +9,7 @@ export function HelloMessage() {
     return <h1>Hello User</h1>;
 }
 
+
 export function ListNames() {
     const [names, setNames] = useState(["ASV", "Richard", "Alex", "Andrei", "Ion"]);
 
@@ -15,7 +17,7 @@ export function ListNames() {
         const interval = setInterval(() => {
             const shuffledNames = [...names].sort(() => Math.random() - 0.5);
             setNames(shuffledNames);
-        }, 30000);
+        }, 5000);
 
         return () => clearInterval(interval);
     }, [names]);

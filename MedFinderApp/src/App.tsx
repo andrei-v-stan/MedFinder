@@ -1,10 +1,10 @@
-/*
+
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
+function BaseApp() {
   const [count, setCount] = useState(0)
 
   return (
@@ -33,12 +33,10 @@ function App() {
   )
 }
 
-export default App
-*/
 
 import { HelloMessage, ListNames } from "./Message";
 
-function App() {
+function Index() {
   return (
     <div>
       <div><HelloMessage /></div>
@@ -47,4 +45,4 @@ function App() {
   );
 }
 
-export default App;
+export default Index;
