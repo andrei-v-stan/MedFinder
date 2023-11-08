@@ -4,7 +4,7 @@ const SUT ={
     user: {
         username: 'johndoe',
         email: 'johndoe@gmail.com',
-        confirmEmail: 'johndoe1@gmail.com',
+        confirmEmail: 'johndoe@gmail.com',
         password: 'qwertyqaz',
         confirmPassword: 'qwertyqaz',
         dateOfBirth: new Date("1997-06-27"),
@@ -36,6 +36,7 @@ describe('SignUpController', ()=>{
             SUT.user.password,SUT.user.confirmPassword,SUT.user.dateOfBirth,SUT.user.gender,SUT.user.height,SUT.user.weight)
 
         var emailConfirmed = signUpController.checkEmailConfirmation();
+        expect(emailConfirmed).toBe(true);
     });
 
 });
