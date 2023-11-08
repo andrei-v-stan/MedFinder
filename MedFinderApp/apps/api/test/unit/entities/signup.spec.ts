@@ -31,5 +31,12 @@ describe('SignUpController', ()=>{
         expect(signUpController.weight).toBe(SUT.user.weight);
     });
 
+    it('This should check if email is equal to confirmEmail', () => {
+        const signUpController = new SignUpController(SUT.user.username,SUT.user.email, SUT.user.confirmEmail, 
+            SUT.user.password,SUT.user.confirmPassword,SUT.user.dateOfBirth,SUT.user.gender,SUT.user.height,SUT.user.weight)
+
+        var emailConfirmed = signUpController.checkEmailConfirmation();
+    });
+
 });
 
