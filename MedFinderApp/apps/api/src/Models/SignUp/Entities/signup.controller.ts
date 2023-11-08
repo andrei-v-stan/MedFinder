@@ -24,6 +24,8 @@ export class SignUpController implements SignUpInterface {
             this.weight = weight;
     }
 
-
+    checkEmailConfirmation() {
+        
+    }
 
 }
