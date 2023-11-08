@@ -24,8 +24,12 @@ export class SignUpController implements SignUpInterface {
             this.weight = weight;
     }
 
-    checkEmailConfirmation() {
-        
+    checkEmailConfirmation(): boolean {
+        if(this.email == this.confirmEmail) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
