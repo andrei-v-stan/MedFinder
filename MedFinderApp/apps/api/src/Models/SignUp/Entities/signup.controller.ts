@@ -25,7 +25,7 @@ export class SignUpController implements SignUpInterface {
     }
 
     checkEmailConfirmation(): boolean {
-        if(this.email == this.confirmEmail) {
+        if(this.email != this.confirmEmail) {
             return true;
         }else{
             return false;
