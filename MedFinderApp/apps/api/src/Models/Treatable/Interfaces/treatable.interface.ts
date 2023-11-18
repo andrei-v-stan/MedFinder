@@ -1,3 +1,0 @@
-interface ITreatable{
-    name: string
-}
