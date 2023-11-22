@@ -20,11 +20,27 @@ let MedicineService = class MedicineService {
     constructor(medicineRepo) {
         this.medicineRepo = medicineRepo;
     }
-    async findAll() {
-        return this.medicineRepo.find();
-    }
     async findOne(id) {
         return this.medicineRepo.findOneBy({ id });
+    }
+    async find(options) {
+        return this.medicineRepo.find(options);
+    }
+    resolveMedicineOptionDto(optionsDto) {
+        console.log(optionsDto.where);
+        console.log(optionsDto.where || {});
+        return {
+            where: optionsDto.where || {},
+            order: optionsDto.order ? this.parseOrderOptions(optionsDto.order) : {},
+            select: optionsDto.select || [],
+        };
+    }
+    parseOrderOptions(order) {
+        return order.reduce((acc, criterion) => {
+            const [column, direction] = criterion.split(':');
+            acc[column] = direction.toUpperCase();
+            return acc;
+        }, {});
     }
 };
 exports.MedicineService = MedicineService;

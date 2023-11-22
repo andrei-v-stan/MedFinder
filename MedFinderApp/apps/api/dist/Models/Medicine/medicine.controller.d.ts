@@ -1,7 +1,9 @@
 import { MedicineService } from "./medicine.service";
+import { Medicine } from "./Entities/medicine.entity";
 export declare class MedicineController {
     private readonly medicineService;
     constructor(medicineService: MedicineService);
-    findAll(): Promise<import("./Entities/medicine.entity").Medicine[]>;
-    findOne(id: string): Promise<import("./Entities/medicine.entity").Medicine>;
+    findByFilter(options?: string): Promise<Medicine[]>;
+    findAll(): Promise<Medicine[]>;
+    findOne(id: string): Promise<Medicine>;
 }
