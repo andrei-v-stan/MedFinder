@@ -34,7 +34,7 @@ __decorate([
     __metadata("design:type", entityinfo_entity_1.EntityInfo)
 ], Symptom.prototype, "info", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => medicine_entity_1.Medicine, medicine => medicine.symptomTreatment, { cascade: true }),
+    (0, typeorm_1.ManyToMany)(() => medicine_entity_1.Medicine, medicine => medicine.symptoms, { cascade: true }),
     __metadata("design:type", Array)
 ], Symptom.prototype, "medicines", void 0);
 exports.Symptom = Symptom = __decorate([

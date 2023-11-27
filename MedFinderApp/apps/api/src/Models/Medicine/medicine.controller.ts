@@ -13,13 +13,28 @@ export class MedicineController{
 
     //test 
     //{"select":{"name":true,"description":true}, "where":{"name":"Aspirin"}}
+    /*{
+  "select": {
+    "name": true,
+    "description": true
+  },
+  "where": {
+    "illnesses": {
+      "info": {
+        "name": "Fever"
+      }
+    }
+  },
+  "relations" : {
+    "illnesses": true,
+  }
+  
+}*/
     @ApiOperation({ summary: 'Get all medicines from filter' })
     @ApiResponse({ status: 200, description: 'Return all medicines from filter.' })
     @ApiQuery({name:'options', type: 'string', required: false})
     @Get('filter')
     async findByFilter(@Query('options') options?: string): Promise<Medicine[]>{
-        console.log("Raw options:", options);
-
         let optionsDto: MedicineOptionsDto;
 
         try {
@@ -28,12 +43,7 @@ export class MedicineController{
             console.error("Error parsing options:", error);
             optionsDto = new MedicineOptionsDto();
         }
-
-        console.log("Complete optionsDto:", optionsDto);
-
         const findOptions = this.medicineService.resolveMedicineOptionDto(optionsDto);
-        console.log("Resolved findOptions:", findOptions);
-
         return this.medicineService.find(findOptions);
     }
 

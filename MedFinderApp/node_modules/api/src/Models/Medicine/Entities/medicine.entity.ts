@@ -21,14 +21,14 @@ export class Medicine implements IMedicine{
         joinColumn: {name: 'illnessId', referencedColumnName: 'id'},
         inverseJoinColumn : {name: 'medicineId', referencedColumnName: 'id'}
     })
-    illnessTreatment: Illness[];
+    illnesses: Illness[];
     @ManyToMany(()=>Symptom, symptom => symptom.medicines)
     @JoinTable({
         name: TABLE_NAMES.MEDICINE_SYMPTOM,
         joinColumn: {name: 'symptomId', referencedColumnName: 'id'},
         inverseJoinColumn : {name: 'medicineId', referencedColumnName: 'id'}
     })
-    symptomTreatment: Symptom[];
+    symptoms: Symptom[];
 
    // @OneToMany(()=> TextReview, review=> review.medicine)
     //reviews: TextReview[]
@@ -41,21 +41,21 @@ export class Medicine implements IMedicine{
     
     
     addIllness(treatable: Illness){
-        this.illnessTreatment.push(treatable);
+        this.illnesses.push(treatable);
     }
     removeIllness(treatable: Illness){
-        var index = this.illnessTreatment.indexOf(treatable);
+        var index = this.illnesses.indexOf(treatable);
         if(index != -1)
-            this.illnessTreatment.splice(index, 1);
+            this.illnesses.splice(index, 1);
     }
 
     addSymptom(treatable: Symptom){
-        this.symptomTreatment.push(treatable);
+        this.symptoms.push(treatable);
     }
     removeSymptom(treatable: Symptom){
-        var index = this.symptomTreatment.indexOf(treatable);
+        var index = this.symptoms.indexOf(treatable);
         if(index != -1)
-            this.symptomTreatment.splice(index, 1);
+            this.symptoms.splice(index, 1);
     }
 
 }

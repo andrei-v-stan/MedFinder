@@ -6,8 +6,8 @@ export declare class Medicine implements IMedicine {
     name: string;
     description: string;
     manufacturer: string;
-    illnessTreatment: Illness[];
-    symptomTreatment: Symptom[];
+    illnesses: Illness[];
+    symptoms: Symptom[];
     constructor(name: string, description: string, manufacturer: string);
     addIllness(treatable: Illness): void;
     removeIllness(treatable: Illness): void;

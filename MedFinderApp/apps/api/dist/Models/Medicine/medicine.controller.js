@@ -22,7 +22,6 @@ let MedicineController = class MedicineController {
         this.medicineService = medicineService;
     }
     async findByFilter(options) {
-        console.log("Raw options:", options);
         let optionsDto;
         try {
             optionsDto = options ? JSON.parse(options) : new medicineOptions_dto_1.MedicineOptionsDto();
@@ -31,9 +30,7 @@ let MedicineController = class MedicineController {
             console.error("Error parsing options:", error);
             optionsDto = new medicineOptions_dto_1.MedicineOptionsDto();
         }
-        console.log("Complete optionsDto:", optionsDto);
         const findOptions = this.medicineService.resolveMedicineOptionDto(optionsDto);
-        console.log("Resolved findOptions:", findOptions);
         return this.medicineService.find(findOptions);
     }
     async findAll() {

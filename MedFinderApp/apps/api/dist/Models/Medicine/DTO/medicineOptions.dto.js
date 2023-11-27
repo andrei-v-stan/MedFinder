@@ -37,4 +37,10 @@ __decorate([
     (0, class_validator_1.IsString)({ each: true }),
     __metadata("design:type", Array)
 ], MedicineOptionsDto.prototype, "order", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsObject)(),
+    (0, class_validator_1.ValidateNested)(),
+    __metadata("design:type", Object)
+], MedicineOptionsDto.prototype, "relations", void 0);
 //# sourceMappingURL=medicineOptions.dto.js.map

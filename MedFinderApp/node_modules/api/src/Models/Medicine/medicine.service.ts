@@ -19,20 +19,23 @@ export class MedicineService {
         return this.medicineRepo.find(options);
     }
     resolveMedicineOptionDto(optionsDto: MedicineOptionsDto): FindManyOptions<Medicine>{
-        console.log(optionsDto.where)
-        console.log(optionsDto.where || {})
         return {
             where: optionsDto.where || {},
             order: optionsDto.order ? this.parseOrderOptions(optionsDto.order) : {},
             select: optionsDto.select || [],
+            relations: optionsDto.relations ? Object.keys(optionsDto.relations) : [],
           };
     }
     parseOrderOptions(order: string[]): { [key: string]: 'ASC' | 'DESC' } {
+        if (Array.isArray(order)){
         return order.reduce((acc, criterion) => {
           const [column, direction] = criterion.split(':');
           acc[column] = direction.toUpperCase() as 'ASC' | 'DESC';
           return acc;
         }, {});
-      }
+        } 
+        return order;
+        
+    }
     
 }

@@ -21,20 +21,20 @@ let Medicine = class Medicine {
         this.manufacturer = manufacturer;
     }
     addIllness(treatable) {
-        this.illnessTreatment.push(treatable);
+        this.illnesses.push(treatable);
     }
     removeIllness(treatable) {
-        var index = this.illnessTreatment.indexOf(treatable);
+        var index = this.illnesses.indexOf(treatable);
         if (index != -1)
-            this.illnessTreatment.splice(index, 1);
+            this.illnesses.splice(index, 1);
     }
     addSymptom(treatable) {
-        this.symptomTreatment.push(treatable);
+        this.symptoms.push(treatable);
     }
     removeSymptom(treatable) {
-        var index = this.symptomTreatment.indexOf(treatable);
+        var index = this.symptoms.indexOf(treatable);
         if (index != -1)
-            this.symptomTreatment.splice(index, 1);
+            this.symptoms.splice(index, 1);
     }
 };
 exports.Medicine = Medicine;
@@ -62,7 +62,7 @@ __decorate([
         inverseJoinColumn: { name: 'medicineId', referencedColumnName: 'id' }
     }),
     __metadata("design:type", Array)
-], Medicine.prototype, "illnessTreatment", void 0);
+], Medicine.prototype, "illnesses", void 0);
 __decorate([
     (0, typeorm_1.ManyToMany)(() => symptom_entity_1.Symptom, symptom => symptom.medicines),
     (0, typeorm_1.JoinTable)({
@@ -71,7 +71,7 @@ __decorate([
         inverseJoinColumn: { name: 'medicineId', referencedColumnName: 'id' }
     }),
     __metadata("design:type", Array)
-], Medicine.prototype, "symptomTreatment", void 0);
+], Medicine.prototype, "symptoms", void 0);
 exports.Medicine = Medicine = __decorate([
     (0, typeorm_1.Entity)({ name: constants_1.TABLE_NAMES.MEDICINES }),
     __metadata("design:paramtypes", [String, String, String])

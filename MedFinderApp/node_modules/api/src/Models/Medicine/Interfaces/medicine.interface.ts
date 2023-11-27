@@ -5,7 +5,7 @@ export interface IMedicine{
     name: string,
     description: string,
     manufacturer: string,
-    illnessTreatment: Illness[],
-    symptomTreatment: Symptom[],
+    illnesses: Illness[],
+    symptoms: Symptom[],
 
 }

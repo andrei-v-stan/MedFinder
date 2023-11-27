@@ -9,7 +9,7 @@ export class Illness {
     id: number;
     @Column(()=>EntityInfo)
     info: EntityInfo
-    @ManyToMany(()=> Medicine, medicine => medicine.symptomTreatment, {cascade: true})
+    @ManyToMany(()=> Medicine, medicine => medicine.symptoms, {cascade: true})
     medicines: Medicine[];
 
     constructor(name: string, description: string){

@@ -10,5 +10,9 @@ export declare class MedicineOptionsDto {
         manufacturer?: string;
     };
     order?: string[];
+    relations?: string[] | {
+        illnesses?: boolean;
+        symptoms?: boolean;
+    };
     constructor();
 }

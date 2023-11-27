@@ -27,20 +27,22 @@ let MedicineService = class MedicineService {
         return this.medicineRepo.find(options);
     }
     resolveMedicineOptionDto(optionsDto) {
-        console.log(optionsDto.where);
-        console.log(optionsDto.where || {});
         return {
             where: optionsDto.where || {},
             order: optionsDto.order ? this.parseOrderOptions(optionsDto.order) : {},
             select: optionsDto.select || [],
+            relations: optionsDto.relations ? Object.keys(optionsDto.relations) : [],
         };
     }
     parseOrderOptions(order) {
-        return order.reduce((acc, criterion) => {
-            const [column, direction] = criterion.split(':');
-            acc[column] = direction.toUpperCase();
-            return acc;
-        }, {});
+        if (Array.isArray(order)) {
+            return order.reduce((acc, criterion) => {
+                const [column, direction] = criterion.split(':');
+                acc[column] = direction.toUpperCase();
+                return acc;
+            }, {});
+        }
+        return order;
     }
 };
 exports.MedicineService = MedicineService;

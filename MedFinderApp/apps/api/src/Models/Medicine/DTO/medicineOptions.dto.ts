@@ -16,10 +16,16 @@ export class MedicineOptionsDto {
     @IsArray()
     @IsString({ each: true })
     order?: string[];
+
+    @IsOptional()
+    @IsObject()
+    @ValidateNested()
+    relations?: string[] | {illnesses?: boolean; symptoms?: boolean};
     
     constructor() {
       this.select = {};
       this.where = {};
       this.order = [];
+      this.relations = [];  
   }
 }
