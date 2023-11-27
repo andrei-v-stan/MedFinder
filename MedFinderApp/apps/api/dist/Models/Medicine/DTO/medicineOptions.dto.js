@@ -16,6 +16,7 @@ class MedicineOptionsDto {
         this.select = {};
         this.where = {};
         this.order = [];
+        this.relations = [];
     }
 }
 exports.MedicineOptionsDto = MedicineOptionsDto;

@@ -5,7 +5,13 @@ const app_module_1 = require("./app.module");
 const swagger_1 = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
 async function bootstrap() {
+    const corsOptions = {
+        origin: '*',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
+    };
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    app.enableCors(corsOptions);
     const config = new swagger_1.DocumentBuilder()
         .addServer('api')
         .setTitle('MedFinder')
