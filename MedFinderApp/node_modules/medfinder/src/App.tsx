@@ -4,6 +4,7 @@ import Home from './pages/Homepage';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
 import MedicinePage from './pages/MedicinePage';
+import SignUp from './pages/SignUp';
 
 const App: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/medicine/:id/:name" element={<MedicinePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
