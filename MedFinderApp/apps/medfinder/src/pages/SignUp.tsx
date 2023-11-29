@@ -1,7 +1,7 @@
 import React from 'react';
 import "../styles/SignUp.css"
 
-const SignUp: React.FC = () => {
+const SignUpPage: React.FC = () => {
   return (
     <div>
       <div className='top_logo'>
@@ -94,4 +94,4 @@ const SignUp: React.FC = () => {
   );
 };
 
-export default SignUp;
+export default SignUpPage;
