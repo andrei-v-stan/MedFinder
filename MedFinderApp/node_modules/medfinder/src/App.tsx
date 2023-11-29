@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import Home from './pages/Homepage';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
+import MedicinePage from './pages/MedicinePage';
 
 const App: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/medicine/:id/:name" element={<MedicinePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

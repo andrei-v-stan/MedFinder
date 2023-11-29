@@ -1,0 +1,45 @@
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #6DB9FF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.topbar, .spacer {
+    height: 75px;
+}
+  
+.logo-button, .profile-button, .logo-MF-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.logo-button img, .profile-button img, .logo-MF-button img {
+    height: auto;
+}
+
+.logo-button img {
+    width: 75px;
+}
+
+.profile-button img {
+    width: 50px;
+}
+
+.logo-MF-button img {
+    width: 300px;
+}

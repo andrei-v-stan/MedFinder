@@ -11,7 +11,7 @@ exports.databaseProviders = [
                 host: 'localhost',
                 port: 3306,
                 username: 'root',
-                password: 'admin',
+                password: 'root',
                 database: 'medfinder',
                 entities: [
                     __dirname + '/../**/*.entity{.ts,.js}',

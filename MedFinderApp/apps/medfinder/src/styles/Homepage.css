@@ -1,0 +1,95 @@
+body {
+    margin: 0; /* Reset default margin */
+    padding: 0; /* Reset default padding */
+    font-family: 'Roboto', sans-serif; /* Use Roboto font for entire page */
+    background-image: url('../assets/topbar/Background.png');
+    background-size: cover; /* Adjust the image size */
+    background-position: center; /* Center the image */
+  }
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px; /* Adjust margin as needed */
+  }
+  
+  .search-bar {
+    width: 300px; /* Adjust width as needed */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-top: 20px; /* Adjust margin as needed */
+  }
+
+  h1, h3 {
+    font-family: 'Roboto', sans-serif; /* Use Roboto font */
+    font-weight: 400; /* Roboto Regular */
+  }
+
+  h1 {
+    font-size: 64px; /* Set font size */
+    margin-bottom: 0; /* Adjust margin as needed */
+  }
+
+  h3 {
+    font-size: 28px; /* Set font size */
+  }
+
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    width: 500px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    border-radius: 25px; /* Half of the height to make it rounded */
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 0 10px;
+    margin-top: 20px; /* Adjust margin as needed */
+  }
+  
+
+
+/* Styles for the dropdown */
+.search-container {
+    position: relative;
+  }
+  
+  .dropdown {
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 0;
+    width: calc(100% - 2px); /* Subtract border width */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    display: none;
+  }
+  
+  .search-container:hover .dropdown {
+    display: block;
+  }
+  
+  .dropdown-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  
+  .dropdown-item {
+    padding: 8px 16px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f2f2f2;
+  }
+  
