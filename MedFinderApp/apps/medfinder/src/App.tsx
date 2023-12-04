@@ -1,22 +1,33 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Homepage';
-import About from './pages/About';
-import NotFound from './pages/NotFound';
-import MedicinePage from './pages/MedicinePage';
-import SignUp from './pages/SignUp';
+import { Home, About, NotFound, MedicinePage, SignUp, Login, Profile, Interpreter } from './pages';
+
 
 const App: React.FC = () => {
+
+  const backgroundStyle = {
+    backgroundImage: 'url("/src/assets/Background.png")',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    height: '100vh',
+  };
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/medicine/:id/:name" element={<MedicinePage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+    <div className="router_container" style={backgroundStyle}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/medicine/:id/:name" element={<MedicinePage />} />
+          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/interpreter" element={<Interpreter />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
+    </div>
   );
 };
 

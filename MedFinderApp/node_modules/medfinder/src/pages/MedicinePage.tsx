@@ -1,36 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
+import Topbar from './Topbar';
 import '../styles/Topbar.css';
 import '../styles/Medicinepage.css';
 
-function Topbar() {
-  return (
-    <>
-    <div className="topbar">
-      <Link to="/">
-        <button className="logo-MF-button">
-          <img src="../../src/assets/topbar/TopbarMFLogo.png" alt="Logo Button" />
-        </button>
-      </Link>
-      
-      <button className="profile-button">
-        <Link to="/profile">
-          <img src="../../src/assets/topbar/Profile.png" alt="Profile Button" />
-        </Link>
-      </button>
-      
-    </div>
-    <div className="spacer"></div>
-    </>
-  );
-}
-
 
 const MedicinePage: React.FC = () => {
-  const { id, name } = useParams<{ id: string; name: string }>();
-
+  const { id } = useParams<{ id: string }>();
   const [medicineData, setMedicineData] = useState<any | null>(null);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -54,16 +34,16 @@ const MedicinePage: React.FC = () => {
 
   return (
     <div>
-      <Topbar />
+      <Topbar isMedicinePage />
       <div className="medicine-details">
-      <h1>{medicineData.name}</h1>
-      <div className="details">
-        <p><strong>ID:</strong> {medicineData.id}</p>
-        <p><strong>Description:</strong> {medicineData.description}</p>
-        <p><strong>Manufacturer:</strong> {medicineData.manufacturer}</p>
-        {/* Include other details as needed */}
+        <h1>{medicineData.name}</h1>
+        <div className="details">
+          <p><strong>ID:</strong> {medicineData.id}</p>
+          <p><strong>Description:</strong> {medicineData.description}</p>
+          <p><strong>Manufacturer:</strong> {medicineData.manufacturer}</p>
+          {/* Include other details as needed */}
+        </div>
       </div>
-    </div>
     </div>
   );
 };

@@ -1,34 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+
+import Topbar from './Topbar';
 import '../styles/Topbar.css';
 import '../styles/Homepage.css';
 
-function Topbar() {
-  return (
-    <>
-    <div className="topbar">
-      <Link to="/">
-        <button className="logo-button">
-          <img src="../../src/assets/topbar/Logo.png" alt="Logo Button" />
-        </button>
-      </Link>
-      
-      <button className="profile-button">
-        <Link to="/profile">
-          <img src="../../src/assets/topbar/Profile.png" alt="Profile Button" />
-        </Link>
-      </button>
-      
-    </div>
-    <div className="spacer"></div>
-    </>
-  );
-}
-
 
 function SearchBar() {
+  const [medicines, setMedicines] = useState([]);
+  const [filteredMedicines, setFilteredMedicines] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [showLetterMenu, setShowLetterMenu] = useState(false);
+  const letterMenuRef = useRef(null);
+  const [searchText, setSearchText] = useState('');
 
-  const [medicines, setMedicines] = useState<any[]>([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -38,20 +23,25 @@ function SearchBar() {
         }
         const data = await response.json();
         setMedicines(data);
-      } 
-      catch (error) {
+      } catch (error) {
         console.error('[Error]: Issues while fetching data:', error);
       }
     };
-
     fetchData();
   }, []);
 
-  const [filteredMedicines, setFilteredMedicines] = useState([]);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const handleLetterClick = (letter) => {
+    const filtered = medicines.filter((medicine) =>
+      medicine.name.toLowerCase().startsWith(letter.toLowerCase())
+    );
+    setFilteredMedicines(filtered);
+    setShowDropdown(true);
+    setShowLetterMenu(false);
+  };
 
   const handleSearchChange = (e) => {
     const searchTerm = e.target.value.toLowerCase();
+    setSearchText(searchTerm);
     const filtered = medicines.filter((medicine) =>
       medicine.name.toLowerCase().includes(searchTerm)
     );
@@ -60,56 +50,87 @@ function SearchBar() {
   };
 
   const handleClick = () => {
-    if (filteredMedicines.length === 0) {
-      setFilteredMedicines(medicines);
+    if (filteredMedicines.length === 0 && searchText === '') {
+      setShowDropdown(false);
+    } else if (filteredMedicines.length === 0) {
+      const encodedSearchText = encodeURIComponent(searchText);
+      window.location.href = `/interpreter?text=${encodedSearchText}`;
+    } else {
       setShowDropdown(true);
     }
   };
 
-  return (
-    <div className="search-container">
-      <input
-        type="text"
-        className="search-bar"
-        placeholder="Search..."
-        onChange={handleSearchChange}
-        onClick={handleClick}
-      />
-      {showDropdown && (
-        <div className="dropdown">
-          <ul className="dropdown-list">
-            {filteredMedicines.map((medicine) => (
-              <li key={medicine.id} className="dropdown-item">
-                <Link to={`/medicine/${medicine.id}/${encodeURIComponent(medicine.name)}`}>
-                  <div className="dropdown-item-content">
-                    {medicine.name}
-                    {/* Other content related to the medicine */}
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-  );
-}
-  
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (letterMenuRef.current && !letterMenuRef.current.contains(event.target)) {
+        setShowLetterMenu(false);
+      }
+    };
 
-const Home: React.FC = () => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
-    <Topbar />
-
-    <div className="content">
-      <h1>MedFinder</h1>
-      <h3>The people's health, medication and answers</h3>
-      <SearchBar />
-    </div>
+      <div className="search-container">
+        <div className="letter-button">
+          <img src="../../src/assets/homepage/LetterA.png" alt="Letter Button" onClick={() => setShowLetterMenu(!showLetterMenu)} />
+        </div>
+        <input
+          type="text"
+          className="search-bar"
+          placeholder="Search..."
+          onChange={handleSearchChange}
+          onClick={() => setShowLetterMenu(false)}
+        />
+        <div className="search-button">
+          <img src="../../src/assets/homepage/Search.png" alt="Search Button" onClick={handleClick} />
+        </div>
+        {showDropdown && (
+          <div className="dropdown">
+            <ul className="dropdown-list">
+              {filteredMedicines.map((medicine) => (
+                <li key={medicine.id} className="dropdown-item">
+                  <Link to={`/medicine/${medicine.id}/${encodeURIComponent(medicine.name)}`}>
+                    <div className="dropdown-item-content">{medicine.name}</div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {showLetterMenu && (
+          <div className="letter-menu" ref={letterMenuRef}>
+            {[
+              'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+              'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', '', 'Y',
+              'Z', '#', '*'
+            ].map((letter) => (
+              <button key={letter} onClick={() => handleLetterClick(letter)}>
+                {letter}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
     </>
   );
+}
 
+const Home: React.FC = () => {
+  return (
+    <>
+      <Topbar />
+      <div className="content">
+        <h1>MedFinder</h1>
+        <h3>The people's health, medication and answers</h3>
+        <SearchBar />
+      </div>
+    </>
+  );
 };
 
 export default Home;
