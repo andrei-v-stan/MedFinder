@@ -5,16 +5,8 @@ import { Home, About, NotFound, MedicinePage, SignUp, Login, Profile, Interprete
 
 const App: React.FC = () => {
 
-  const backgroundStyle = {
-    backgroundImage: 'url("/src/assets/Background.png")',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    height: '100vh',
-  };
-
   return (
-    <div className="router_container" style={backgroundStyle}>
+    <div className="router_container">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />

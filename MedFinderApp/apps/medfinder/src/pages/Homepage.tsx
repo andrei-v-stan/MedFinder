@@ -5,7 +5,6 @@ import Topbar from './Topbar';
 import '../styles/Topbar.css';
 import '../styles/Homepage.css';
 
-
 function SearchBar() {
   const [medicines, setMedicines] = useState([]);
   const [filteredMedicines, setFilteredMedicines] = useState([]);
@@ -30,14 +29,29 @@ function SearchBar() {
     fetchData();
   }, []);
 
-  const handleLetterClick = (letter) => {
-    const filtered = medicines.filter((medicine) =>
-      medicine.name.toLowerCase().startsWith(letter.toLowerCase())
-    );
-    setFilteredMedicines(filtered);
-    setShowDropdown(true);
-    setShowLetterMenu(false);
+  const inputRef = useRef(null);
+  const dropdownRef = useRef(null);
+
+  const handleDropdownHide = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setShowDropdown(false);
+    }
   };
+
+  const handleLetterMenuHide = (event) => {
+    if (letterMenuRef.current && !letterMenuRef.current.contains(event.target)) {
+      setShowLetterMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleDropdownHide);
+    document.addEventListener('mousedown', handleLetterMenuHide);
+    return () => {
+      document.removeEventListener('mousedown', handleDropdownHide);
+      document.removeEventListener('mousedown', handleLetterMenuHide);
+    };
+  }, []);
 
   const handleSearchChange = (e) => {
     const searchTerm = e.target.value.toLowerCase();
@@ -49,9 +63,10 @@ function SearchBar() {
     setShowDropdown(true);
   };
 
-  const handleClick = () => {
-    if (filteredMedicines.length === 0 && searchText === '') {
-      setShowDropdown(false);
+  const handleSearchClick = () => {
+    if (searchText === '') {
+      setFilteredMedicines(medicines);
+      setShowDropdown(true);
     } else if (filteredMedicines.length === 0) {
       const encodedSearchText = encodeURIComponent(searchText);
       window.location.href = `/interpreter?text=${encodedSearchText}`;
@@ -60,18 +75,18 @@ function SearchBar() {
     }
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (letterMenuRef.current && !letterMenuRef.current.contains(event.target)) {
-        setShowLetterMenu(false);
-      }
-    };
+  const handleLinkClick = () => {
+    setShowDropdown(false);
+  };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  const handleLetterClick = (letter) => {
+    const filtered = medicines.filter((medicine) =>
+      medicine.name.toLowerCase().startsWith(letter.toLowerCase())
+    );
+    setFilteredMedicines(filtered);
+    setShowDropdown(true);
+    setShowLetterMenu(false);
+  };
 
   return (
     <>
@@ -84,17 +99,21 @@ function SearchBar() {
           className="search-bar"
           placeholder="Search..."
           onChange={handleSearchChange}
-          onClick={() => setShowLetterMenu(false)}
+          onClick={handleSearchClick}
+          ref={inputRef}
         />
         <div className="search-button">
-          <img src="../../src/assets/homepage/Search.png" alt="Search Button" onClick={handleClick} />
+          <img src="../../src/assets/homepage/Search.png" alt="Search Button" onClick={handleSearchClick} />
         </div>
         {showDropdown && (
-          <div className="dropdown">
+          <div className="dropdown" ref={dropdownRef}>
             <ul className="dropdown-list">
               {filteredMedicines.map((medicine) => (
                 <li key={medicine.id} className="dropdown-item">
-                  <Link to={`/medicine/${medicine.id}/${encodeURIComponent(medicine.name)}`}>
+                  <Link
+                    to={`/medicine/${medicine.id}/${encodeURIComponent(medicine.name)}`}
+                    onClick={handleLinkClick}
+                  >
                     <div className="dropdown-item-content">{medicine.name}</div>
                   </Link>
                 </li>

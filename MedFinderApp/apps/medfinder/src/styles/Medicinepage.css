@@ -1,16 +1,119 @@
-.medicine-details {
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 20px 0;
-  }
-  
-  .details p {
-    margin: 5px 0;
-  }
-  
-  .details strong {
-    font-weight: bold;
-  }
-  
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+.medicine-wrapper {
+  position: relative;
+}
+
+.floating-bar {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  z-index: 10;
+  transition: none;
+  border-radius: 0 0 10px 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  position: relative;
+  width: 75%;
+  max-width: 606px;
+  margin: 0 auto;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.floating-bar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 2%;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+  font-size: 16px;
+  font-family: 'Source Serif Pro', serif;
+  font-weight: bold;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.floating-bar a:not(:last-child) {
+  margin-right: 3px;
+}
+
+.floating-bar a:last-child::after {
+  content: none;
+}
+
+.floating-bar a::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -2px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, #000, transparent);
+}
+
+.floating-bar a:hover {
+  background-color: #f0f0f0;
+}
+
+.floating-bar.floating {
+  position: fixed;
+  top: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  z-index: 2;
+}
+
+
+section {
+  background-color: #c2e9ff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: 'Source Serif Pro', serif;
+  padding: 20px;
+  margin: 40px 0;
+}
+
+section:is(:first-child) {
+  margin-bottom: 0;
+}
+
+section p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+section h1 {
+  margin: 5px 0;
+  font-size: 42px;
+  font-family: 'Source Serif Pro', serif;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+section strong {
+  font-weight: bold;
+}
