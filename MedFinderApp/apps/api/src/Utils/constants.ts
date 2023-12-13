@@ -11,8 +11,8 @@ export const TABLE_NAMES = {
 }
 export const REPO_NAMES ={
     DATASOURCE: 'DATA_SOURCE',
-    MEDICINE: 'MEDCINE_REPO',
-    REVIEW: 'REVIEW'
+    MEDICINE: 'MEDCINE_REPO'
+
 }
 
 // so anyway I started cooking ... 

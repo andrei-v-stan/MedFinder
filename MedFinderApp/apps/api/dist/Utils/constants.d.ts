@@ -11,5 +11,4 @@ export declare const TABLE_NAMES: {
 export declare const REPO_NAMES: {
     DATASOURCE: string;
     MEDICINE: string;
-    REVIEW: string;
 };

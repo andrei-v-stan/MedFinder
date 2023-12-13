@@ -13,7 +13,6 @@ exports.TABLE_NAMES = {
 };
 exports.REPO_NAMES = {
     DATASOURCE: 'DATA_SOURCE',
-    MEDICINE: 'MEDCINE_REPO',
-    REVIEW: 'REVIEW'
+    MEDICINE: 'MEDCINE_REPO'
 };
 //# sourceMappingURL=constants.js.map
