@@ -12,13 +12,16 @@
     box-sizing: border-box;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     z-index: 5;
-}
-
-.topbar, .spacer {
-    height: 75px;
-}
+  }
   
-.logo-button, .profile-button, .logo-MF-button {
+  .topbar,
+  .spacer {
+    height: 75px;
+  }
+  
+  .logoButton,
+  .profileButton,
+  .logoMFButton {
     background: none;
     border: none;
     cursor: pointer;
@@ -27,21 +30,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
+  }
   
-.logo-button img, .profile-button img, .logo-MF-button img {
+  .logoButton img,
+  .profileButton img,
+  .logoMFButton img {
     height: auto;
-}
-
-.logo-button img {
+  }
+  
+  .logoButton img {
     width: 75px;
-}
-
-.profile-button img {
+  }
+  
+  .profileButton img {
     width: 50px;
-}
-
-.logo-MF-button img {
+  }
+  
+  .logoMFButton img {
     height: 60px;
     width: 240px;
-}
+  }
+  

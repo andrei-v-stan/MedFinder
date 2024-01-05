@@ -21,7 +21,7 @@
   position: relative;
 }
 
-.floating-bar {
+.floatingBar {
   display: flex;
   align-items: center;
   background-color: #fff;
@@ -37,7 +37,7 @@
   white-space: nowrap;
 }
 
-.floating-bar a {
+.floatingBar .textButton {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,15 +54,15 @@
   flex-shrink: 0;
 }
 
-.floating-bar a:not(:last-child) {
+.floatingBar .textButton:not(:last-child) {
   margin-right: 3px;
 }
 
-.floating-bar a:last-child::after {
+.floatingBar .textButton:last-child::after {
   content: none;
 }
 
-.floating-bar a::after {
+.floatingBar .textButton::after {
   content: '';
   position: absolute;
   top: 0;
@@ -72,11 +72,11 @@
   background: linear-gradient(to bottom, transparent, #000, transparent);
 }
 
-.floating-bar a:hover {
+.floatingBar .textButton:hover {
   background-color: #f0f0f0;
 }
 
-.floating-bar.floating {
+.floatingBar.floating {
   position: fixed;
   top: 75px;
   left: 50%;
@@ -84,6 +84,12 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   z-index: 2;
+}
+
+
+.textButton {
+  background: none;
+  border: none;
 }
 
 
@@ -117,3 +123,5 @@ section h1 {
 section strong {
   font-weight: bold;
 }
+
+

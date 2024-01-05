@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-
 import Topbar from './Topbar';
-import '../styles/Topbar.css';
-import '../styles/Homepage.css';
+import HomepageStyle from '../styles/Homepage.module.css';
 
 function SearchBar() {
   const [medicines, setMedicines] = useState([]);
@@ -90,31 +88,31 @@ function SearchBar() {
 
   return (
     <>
-      <div className="search-container">
-        <div className="letter-button">
+      <div className={HomepageStyle.searchContainer}>
+        <div className={HomepageStyle.letterButton}>
           <img src="../../src/assets/homepage/LetterA.png" alt="Letter Button" onClick={() => setShowLetterMenu(!showLetterMenu)} />
         </div>
         <input
           type="text"
-          className="search-bar"
+          className={HomepageStyle.searchBar}
           placeholder="Search..."
           onChange={handleSearchChange}
           onClick={handleSearchClick}
           ref={inputRef}
         />
-        <div className="search-button">
+        <div className={HomepageStyle.searchButton}>
           <img src="../../src/assets/homepage/Search.png" alt="Search Button" onClick={handleSearchClick} />
         </div>
         {showDropdown && (
-          <div className="dropdown" ref={dropdownRef}>
-            <ul className="dropdown-list">
+          <div className={HomepageStyle.dropdown} ref={dropdownRef}>
+            <ul className={HomepageStyle.dropdownList}>
               {filteredMedicines.map((medicine) => (
-                <li key={medicine.id} className="dropdown-item">
+                <li key={medicine.id} className={HomepageStyle.dropdownItem}>
                   <Link
                     to={`/medicine/${medicine.id}/${encodeURIComponent(medicine.name)}`}
                     onClick={handleLinkClick}
                   >
-                    <div className="dropdown-item-content">{medicine.name}</div>
+                    <div className={HomepageStyle.dropdownItemContent}>{medicine.name}</div>
                   </Link>
                 </li>
               ))}
@@ -122,7 +120,7 @@ function SearchBar() {
           </div>
         )}
         {showLetterMenu && (
-          <div className="letter-menu" ref={letterMenuRef}>
+          <div className={HomepageStyle.letterMenu} ref={letterMenuRef}>
             {[
               'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
               'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', '', 'Y',
@@ -143,9 +141,9 @@ const Home: React.FC = () => {
   return (
     <>
       <Topbar />
-      <div className="content">
-        <h1>MedFinder</h1>
-        <h3>The people's health, medication and answers</h3>
+      <div className={HomepageStyle.content}>
+        <h1 className={HomepageStyle.title}>MedFinder</h1>
+        <h3 className={HomepageStyle.subtitle}>The people's health, medication, and answers</h3>
         <SearchBar />
       </div>
     </>

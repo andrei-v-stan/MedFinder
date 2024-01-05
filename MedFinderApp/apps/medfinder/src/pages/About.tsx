@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/About.css';
+import AboutStyle from '../styles/About.module.css';
 
 const About: React.FC = () => {
   const [redirecting, setRedirecting] = useState(false);
@@ -15,8 +15,8 @@ const About: React.FC = () => {
 
   return (
     <>
-      <div class="load"></div>
-      <h1>Redirecting to Github Page</h1>
+      <div className={AboutStyle.load}></div>
+      <h1 className={AboutStyle.heading}>Redirecting to Github Page</h1>
     </>
   );
 };

@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
-
 import Topbar from './Topbar';
-import '../styles/Topbar.css';
-import '../styles/Medicinepage.css';
+import MedicinePageStyle from '../styles/MedicinePage.module.css';
 
 const MedicinePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -38,13 +36,13 @@ const MedicinePage: React.FC = () => {
 
   const handleScroll = () => {
     if (floatingBarRef.current && medicineDetailsRef.current) {
-      const topbarHeight = document.querySelector('.topbar')?.clientHeight || 0;
+      const topbarHeight = document.querySelector('.topbar')?.clientHeight || document.querySelector('._topbar_awuy2_1')?.clientHeight || 75;
       const rect = medicineDetailsRef.current.getBoundingClientRect();
       const isFloating = rect.bottom <= topbarHeight;
       if (isFloating) {
-        floatingBarRef.current.classList.add('floating');
+        floatingBarRef.current.classList.add(MedicinePageStyle.floating);
       } else {
-        floatingBarRef.current.classList.remove('floating');
+        floatingBarRef.current.classList.remove(MedicinePageStyle.floating);
       }
     }
   };  
@@ -60,26 +58,25 @@ const MedicinePage: React.FC = () => {
     return <div>Loading...</div>;
   }
 
-
   return (
     <>
       <Topbar isMedicinePage />
 
-      <div className="medicine-wrapper">
-        <section ref={medicineDetailsRef} className="details">
+      <div className={MedicinePageStyle.medicineWrapper}>
+        <section ref={medicineDetailsRef} className={MedicinePageStyle.details}>
           <h1>{medicineData.name}</h1>
           <p><strong>ID:</strong> {medicineData.id}</p>
           <p><strong>Description:</strong> {medicineData.description}</p>
           <p><strong>Manufacturer:</strong> {medicineData.manufacturer}</p>
         </section>
 
-        <div className="floating-bar" ref={floatingBarRef}>
-          <a href="#usage">Usage</a>
-          <a href="#sideEffects">Side Effects</a>
-          <a href="#precautions">Precautions</a>
-          <a href="#interactions">Interactions</a>
-          <a href="#symptomScale">Symptom Scale</a>
-          <a href="#reviews">Reviews</a>
+        <div className={MedicinePageStyle.floatingBar} ref={floatingBarRef}>
+          <button onClick={() => scrollToSection("usage")} className={MedicinePageStyle.textButton}>Usage</button>
+          <button onClick={() => scrollToSection("sideEffects")} className={MedicinePageStyle.textButton}>Side Effects</button>
+          <button onClick={() => scrollToSection("precautions")} className={MedicinePageStyle.textButton}>Precautions</button>
+          <button onClick={() => scrollToSection("interactions")} className={MedicinePageStyle.textButton}>Interactions</button>
+          <button onClick={() => scrollToSection("symptomScale")} className={MedicinePageStyle.textButton}>Symptom Scale</button>
+          <button onClick={() => scrollToSection("reviews")} className={MedicinePageStyle.textButton}>Reviews</button>
         </div>
       </div>
 

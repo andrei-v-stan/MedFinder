@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
-
-import '../styles/Topbar.css';
+import TopbarStyle from '../styles/Topbar.module.css';
 
 interface TopbarProps {
   isMedicinePage?: boolean;
@@ -14,13 +13,13 @@ const Topbar: React.FC<TopbarProps> = ({ isMedicinePage }) => {
   const renderProfileButton = () => {
     if (profileId) {
       return (
-        <Link to={`/profile/${profileId}`} className="profile-button">
+        <Link to={`/profile/${profileId}`} className={TopbarStyle.profileButton}>
           <img src="../../src/assets/topbar/Profile.png" alt="Profile Button" />
         </Link>
       );
     } else {
       return (
-        <Link to="/login" className="profile-button">
+        <Link to="/login" className={TopbarStyle.profileButton}>
           <img src="../../src/assets/topbar/Profile.png" alt="Profile Button" />
         </Link>
       );
@@ -30,7 +29,7 @@ const Topbar: React.FC<TopbarProps> = ({ isMedicinePage }) => {
   const renderLogo = () => {
     if (isMedicinePage) {
       return (
-        <button className="logo-MF-button">
+        <button className={TopbarStyle.logoMFButton}>
           <Link to="/">
             <img src="../../src/assets/topbar/LogoBanner.png" alt="Logo Button" />
           </Link>
@@ -38,7 +37,7 @@ const Topbar: React.FC<TopbarProps> = ({ isMedicinePage }) => {
       );
     } else {
       return (
-        <button className="logo-button">
+        <button className={TopbarStyle.logoButton}>
           <Link to="/">
             <img src="../../src/assets/topbar/Logo.png" alt="Logo Button" />
           </Link>
@@ -49,11 +48,11 @@ const Topbar: React.FC<TopbarProps> = ({ isMedicinePage }) => {
 
   return (
     <>
-      <div className="topbar">
+      <div className={TopbarStyle.topbar}>
         {renderLogo()}
         {renderProfileButton()}
       </div>
-      <div className="spacer"></div>
+      <div className={TopbarStyle.spacer}></div>
     </>
   );
 };
