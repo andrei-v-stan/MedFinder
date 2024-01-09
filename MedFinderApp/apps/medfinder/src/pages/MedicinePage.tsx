@@ -3,12 +3,27 @@ import { useParams, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Topbar from './Topbar';
 import MedicinePageStyle from '../styles/MedicinePage.module.css';
+import ReviewList from '../components/Review/ReviewList';
+import ReviewData from '../data/ReviewData';
+import ReviewStats from '../components/Review/ReviewStats';
+import ReviewForm from '../components/Review/ReviewForm';
+import { v4 as uuidv4 } from 'uuid';
 
 const MedicinePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [medicineData, setMedicineData] = useState<any | null>(null);
   const floatingBarRef = useRef<HTMLDivElement>(null);
   const medicineDetailsRef = useRef<HTMLDivElement>(null);
+  const [review, setReview] = useState(ReviewData);
+  const addReview = newReview => {
+    newReview.id = uuidv4();
+    setReview([newReview, ...review]);
+  };
+  const deleteFeedback = id => {
+    if (window.confirm('Are you sure you want to delete?')) {
+      setReview(review.filter(item => item.id !== id));
+    }
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -102,7 +117,11 @@ const MedicinePage: React.FC = () => {
       </section>
       <section id="reviews">
         <h1>Reviews</h1>
-        <p><strong>Description:</strong> {medicineData.description}</p>
+        <div className="container">
+          <ReviewForm handleAdd={addReview} />
+          <ReviewStats review={review} />
+          <ReviewList review={review} handleDelete={deleteFeedback} />
+        </div>
       </section>
     </>
   );
