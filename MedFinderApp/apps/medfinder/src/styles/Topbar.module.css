@@ -50,4 +50,20 @@
     height: 60px;
     width: 240px;
   }
+
+  .profileButtonsWrapper {
+    display: flex;
+  }
+
+  .logoutButton {
+    background: transparent;
+    border: none;
+  }
+
+  .logoutButton img {
+    width: 50px;
+    margin-left: 15px;
+    cursor: pointer;
+  }
+
   

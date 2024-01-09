@@ -6,7 +6,9 @@ export const TABLE_NAMES = {
     TREATMENT: 'treatment',
     REVIEW: 'reviews',
     MEDICINE_ILLNESS: 'medicines_illnesses',
-    MEDICINE_SYMPTOM: 'medicines_symptoms'
+    MEDICINE_SYMPTOM: 'medicines_symptoms',
+    USERS: 'users',
+    PROFILES: 'profiles',
 
 }
 export const REPO_NAMES ={

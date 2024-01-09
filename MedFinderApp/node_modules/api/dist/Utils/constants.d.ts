@@ -7,6 +7,8 @@ export declare const TABLE_NAMES: {
     REVIEW: string;
     MEDICINE_ILLNESS: string;
     MEDICINE_SYMPTOM: string;
+    USERS: string;
+    PROFILES: string;
 };
 export declare const REPO_NAMES: {
     DATASOURCE: string;

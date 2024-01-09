@@ -1,12 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import "../styles/SignUp.css"
 
 const SignUpPage: React.FC = () => {
+
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        confirmEmail: '',
+        password: '',
+        confirmPassword: '',
+        nickname: '',
+        birthday: '',
+        weight: '',
+        height: '',
+        gender: '',
+      });
+
+      const [isLoading, setIsLoading] = useState(false);
+
+      const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+      };
+    
+      const handleSignUp = async () => {
+        try {
+            setIsLoading(true); // Set loading state to true before starting the signup process
+
+            const response = await axios.post('http://localhost:3000/api/users/signup', formData);
+            console.log('Signup successful', response.data);
+            // Handle success, redirect, or perform other actions here
+            // Redirect to the main page after signup
+            window.location.href = '/login';
+        } catch (error: any) {
+            console.error('Signup failed', error.response.data);
+            // Handle errors and provide feedback to the user here
+            alert(error.response.data.message);
+        }finally {
+            setIsLoading(false); // Reset loading state after the signup process is complete
+        }
+      };
+
   return (
     <div>
       <div className='top_logo'>
         <a href='/' className='home_page_link'>
-            Med <img src='/src/assets/Logo.svg' /> Finder
+            Med <img src='/src/assets/signup/Logo.svg' /> Finder
         </a>
       </div>
       <div className='form_wrapper'>
@@ -19,24 +59,54 @@ const SignUpPage: React.FC = () => {
                     General details
                 </div>
                 <div className='input_wrapper large_input'>
-                    <img src='/src/assets/User.svg' />
-                    <input type='text' placeholder='Enter a username' />
+                    <img src='/src/assets/signup/User.svg' />
+                    <input 
+                        type='text'                        
+                        placeholder='Enter a username'
+                        name='username'
+                        value={formData.username}
+                        onChange={handleInputChange}
+                        />
                 </div>
                 <div className='input_wrapper large_input'>
-                    <img src='/src/assets/At.svg' />
-                    <input type='email' placeholder='Enter your email address' />
+                    <img src='/src/assets/signup/At.svg' />
+                    <input 
+                        type='email' 
+                        placeholder='Enter your email address' 
+                        name='email'
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        />
                 </div>
                 <div className='input_wrapper large_input'>
-                    <img src='/src/assets/At.svg' />
-                    <input type='email' placeholder='Confirm your email address' />
+                    <img src='/src/assets/signup/At.svg' />
+                    <input 
+                        type='email' 
+                        placeholder='Confirm your email address' 
+                        name='confirmEmail'
+                        value={formData.confirmEmail}
+                        onChange={handleInputChange}
+                        />
                 </div>
                 <div className='input_wrapper large_input'>
-                    <img src='/src/assets/Password.svg' />
-                    <input type='password' placeholder='Enter a password' />
+                    <img src='/src/assets/signup/Password.svg' />
+                    <input 
+                        type='password' 
+                        placeholder='Enter a password' 
+                        name='password'
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        />
                 </div>
                 <div className='input_wrapper large_input'>
-                    <img src='/src/assets/Password.svg' />
-                    <input type='password' placeholder='Confirm your password' />
+                    <img src='/src/assets/signup/Password.svg' />
+                    <input 
+                        type='password' 
+                        placeholder='Confirm your password' 
+                        name='confirmPassword'
+                        value={formData.confirmPassword}
+                        onChange={handleInputChange}
+                        />
                 </div>
             </div>
             <div className='middle_section'></div>
@@ -46,15 +116,33 @@ const SignUpPage: React.FC = () => {
                 </div>
                 <div className='input_group'>
                     <div className='input_wrapper mid_input'>
-                        <input type='text' placeholder='Nickname' />
+                        <input 
+                            type='text' 
+                            placeholder='Nickname' 
+                            name='nickname'
+                            value={formData.nickname}
+                            onChange={handleInputChange}
+                            />
                     </div>
                     <div className='input_wrapper mid2_input'>
-                        <input type='text' placeholder='Date of birth' />
+                        <input 
+                            type='text' 
+                            placeholder='Birthday' 
+                            name='birthday'
+                            value={formData.birthday}
+                            onChange={handleInputChange}
+                            />
                     </div>
                 </div>
                 <div className='input_group'>
                     <div className='input_wrapper small_input'>
-                        <input type='text' placeholder='Weight' />
+                        <input 
+                            type='text' 
+                            placeholder='Weight' 
+                            name='weight'
+                            value={formData.weight}
+                            onChange={handleInputChange}
+                            />
                         <div className='select_group'>
                             <div className='select_option left_option active'>
                                 kg
@@ -65,18 +153,30 @@ const SignUpPage: React.FC = () => {
                         </div>                 
                     </div>
                     <div className='input_wrapper small_input'>
-                        <input type='text' placeholder='Height' />
+                        <input 
+                            type='text' 
+                            placeholder='Height' 
+                            name='height'
+                            value={formData.height}
+                            onChange={handleInputChange}
+                            />
                         <div className='select_group'>
                             <div className='select_option left_option active'>
-                                kg
+                                cm
                             </div>
                             <div className='select_option right_option'>
-                                lbs
+                                in
                             </div>
                         </div>                       
                     </div>
                     <div className='input_wrapper small_input'>
-                        <input type='text' placeholder='Sex' />
+                        <input 
+                            type='text' 
+                            placeholder='Sex' 
+                            name='gender'
+                            value={formData.gender}
+                            onChange={handleInputChange}
+                            />
                     </div>
                 </div>
                 <div className='info_text_wrapper'>
@@ -84,8 +184,12 @@ const SignUpPage: React.FC = () => {
                     details given are used only for statistical computation
                 </div>
                 <div className='button_wrapper'>
-                    <button type='button'>Sign Up</button>
+                    <button type='button' onClick={handleSignUp} disabled={isLoading}>
+                        {isLoading ? 'Signing Up...' : 'Sign Up'}
+                    </button>
                 </div>
+                {/* Display a loader while loading */}
+                {/*isLoading && <div className="loader">Loading...</div>*/}
             </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { ITreatment } from "../Interfaces/treatment.interface";
 import { Entity } from "typeorm";
 import { TABLE_NAMES } from "src/Utils/constants";
 import { UserSymptom } from "src/Models/Treatable/Entities/usersymptom.entity";
-import { UserProfile } from "src/Models/Users/Entities/user-data.entity";
+import { Profile } from "src/Models/Users/Entities/profile.entity";
 import { Illness } from "src/Models/Treatable/Entities/illness.entity";
 
 //@Entity({name: TABLE_NAMES.TREATMENT})
@@ -13,6 +13,6 @@ export class Treatment implements ITreatment{
     administrationRecommendations: string;//
     userSymptoms: UserSymptom[];
     userIllnesses: Illness[];
-    userProfile: UserProfile;
+    userProfile: Profile;
 
 }

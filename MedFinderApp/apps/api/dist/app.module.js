@@ -13,6 +13,7 @@ const app_service_1 = require("./app.service");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
 const medicine_module_1 = require("./Models/Medicine/medicine.module");
+const users_module_1 = require("./Models/Users/users.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -21,7 +22,7 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             serve_static_1.ServeStaticModule.forRoot({
                 rootPath: (0, path_1.join)(__dirname, '../..', 'medfinder', 'dist'),
-            }), medicine_module_1.MedicineModule
+            }), medicine_module_1.MedicineModule, users_module_1.UsersModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

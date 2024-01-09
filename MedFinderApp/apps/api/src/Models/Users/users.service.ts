@@ -1,23 +1,100 @@
 import { Injectable } from '@nestjs/common';
+import { CreateUserDto } from './DTO/create-user.dto';
+import { UserDto } from './DTO/user.dto';
+import { ProfileDto } from './DTO/profile.dto';
+import { AuthUserDto } from './DTO/auth-user.dto';
+import { User } from './Entities/user.entity';
+import { Profile } from './Entities/profile.entity';
+import * as bcrypt from 'bcryptjs';
 
-export type User = any;
 
 @Injectable()
 export class UsersService {
-  private readonly users = [
-    {
-      userId: 1,
-      username: 'andreistan',
-      password: '123456',
-    },
-    {
-      userId: 2,
-      username: 'richardrud',
-      password: '9876',
-    },
-  ];
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find(user => user.username === username);
-  }
+    async create(createUserDto: CreateUserDto){
+        const userDto = new UserDto();
+        userDto.setUsername(createUserDto.username);
+        userDto.setEmail(createUserDto.email);
+        userDto.setPassword(createUserDto.password);
+
+        const user = User.create(userDto);
+        await user.save();
+
+        delete user.password;
+
+        const profileDto = new ProfileDto();
+        profileDto.setNickname(createUserDto.nickname);
+        profileDto.setBirthday(createUserDto.birthday);
+        profileDto.setWeight(createUserDto.weight);
+        profileDto.setHeight(createUserDto.height);
+        profileDto.setGender(createUserDto.gender);
+        profileDto.setUserId(user.id);
+
+        const profile = Profile.create(profileDto);
+        await profile.save();
+
+        return user;
+    }
+
+    async showById(id: number): Promise<User> {
+        const user = await this.findById(id);
+
+        delete user.password;
+        return user;
+    }
+
+    async findById(id: number) {
+        return await User.findOne({
+            where: {
+                id: id
+            }
+        });
+    }
+
+    async findByEmail(email: string) {
+        return await User.findOne({
+            where: {
+                email: email
+            }
+        });
+    }
+
+    async findByUsername(username: string) {
+        return await User.findOne({
+            where: {
+                username: username
+            }
+        });
+    }
+
+    async findByLogin(login: string) {
+        // Regular expression for basic email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(emailRegex.test(login)){
+            return await this.findByEmail(login);
+        }else{
+            return await this.findByUsername(login);
+        }
+    }
+
+    async auth(authUserDto: AuthUserDto) {
+        console.log('Auth data in service', authUserDto);
+      
+        try {
+            const user = await this.findByLogin(authUserDto.login);
+        
+            console.log('Find object', user);
+        
+            if (user && bcrypt.compareSync(authUserDto.password, user.password)) {      
+                return user.id.toString();
+            } else {
+                return "Wrong credentials";
+            }
+        } catch (error) {
+          console.error('Error during authentication:', error);
+          return "An error occurred during authentication";
+        }
+    }
+      
+
 }

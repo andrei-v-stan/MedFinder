@@ -10,12 +10,22 @@ interface TopbarProps {
 const Topbar: React.FC<TopbarProps> = ({ isMedicinePage }) => {
   const profileId = Cookies.get('profileId');
 
+  const handleLogIn = async () => {
+    Cookies.remove('profileId');
+    window.location.href = '/';
+  };
+
   const renderProfileButton = () => {
     if (profileId) {
       return (
-        <Link to={`/profile/${profileId}`} className={TopbarStyle.profileButton}>
-          <img src="../../src/assets/topbar/Profile.png" alt="Profile Button" />
-        </Link>
+        <div className={TopbarStyle.profileButtonsWrapper}>
+          <Link to={`/profile/${profileId}`} className={TopbarStyle.profileButton}>
+            <img src="../../src/assets/topbar/Profile.png" alt="Profile Button" />
+          </Link>
+          <button type='button' onClick={handleLogIn} className={TopbarStyle.logoutButton}>
+            <img src="../../src/assets/topbar/logout.png" alt="Logout Button" />
+          </button>
+        </div>
       );
     } else {
       return (

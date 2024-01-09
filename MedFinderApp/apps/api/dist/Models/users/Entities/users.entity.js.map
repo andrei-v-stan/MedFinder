@@ -1,1 +1,0 @@
-{"version":3,"file":"users.entity.js","sourceRoot":"","sources":["../../../../src/Models/Users/Entities/users.entity.ts"],"names":[],"mappings":";;;AAGA,MAAa,eAAe;IAMxB,YAAY,QAAgB,EAAE,QAAgB,EAAE,QAAqB;QACjE,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAC;QACzB,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAC;QACzB,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAC;IAC7B,CAAC;IAED,MAAM;IAEN,CAAC;CAEJ;AAhBD,0CAgBC"}

@@ -9,7 +9,9 @@ exports.TABLE_NAMES = {
     TREATMENT: 'treatment',
     REVIEW: 'reviews',
     MEDICINE_ILLNESS: 'medicines_illnesses',
-    MEDICINE_SYMPTOM: 'medicines_symptoms'
+    MEDICINE_SYMPTOM: 'medicines_symptoms',
+    USERS: 'users',
+    PROFILES: 'profiles',
 };
 exports.REPO_NAMES = {
     DATASOURCE: 'DATA_SOURCE',
