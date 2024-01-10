@@ -1,0 +1,14 @@
+.info_wrapper {
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+    background-color: #F4FAFF;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 50px auto;
+}
+
+.info_wrapper p {
+    font-size: 20px;
+}

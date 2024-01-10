@@ -1,4 +1,4 @@
-import {BaseEntity, BeforeInsert, Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
+import {BaseEntity, BeforeInsert, Column, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
 import { TABLE_NAMES } from 'src/Utils/constants';
 
 import * as bcrypt from 'bcryptjs';

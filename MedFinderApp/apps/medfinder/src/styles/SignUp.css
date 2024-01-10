@@ -110,7 +110,14 @@ html {
 }
 
 .input_wrapper input {
-    font-size: 30px;
+    font-size: 25px;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+}
+
+.input_wrapper select {
+    font-size: 25px;
     width: 100%;
     background-color: transparent;
     border: none;
@@ -126,11 +133,11 @@ html {
 }
 
 .mid_input {
-    max-width: 320px;
+    max-width: 300px;
 }
 
 .mid2_input {
-    max-width: 200px;
+    max-width: 220px;
 }
 
 .small_input {

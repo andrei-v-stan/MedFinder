@@ -8,18 +8,18 @@ interface TopbarProps {
 }
 
 const Topbar: React.FC<TopbarProps> = ({ isMedicinePage }) => {
-  const profileId = Cookies.get('profileId');
+  const userId = Cookies.get('userId');
 
   const handleLogIn = async () => {
-    Cookies.remove('profileId');
+    Cookies.remove('userId');
     window.location.href = '/';
   };
 
   const renderProfileButton = () => {
-    if (profileId) {
+    if (userId) {
       return (
         <div className={TopbarStyle.profileButtonsWrapper}>
-          <Link to={`/profile/${profileId}`} className={TopbarStyle.profileButton}>
+          <Link to={`/profile/${userId}`} className={TopbarStyle.profileButton}>
             <img src="../../src/assets/topbar/Profile.png" alt="Profile Button" />
           </Link>
           <button type='button' onClick={handleLogIn} className={TopbarStyle.logoutButton}>

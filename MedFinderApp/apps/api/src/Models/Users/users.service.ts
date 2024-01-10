@@ -12,6 +12,17 @@ import * as bcrypt from 'bcryptjs';
 export class UsersService {
 
     async create(createUserDto: CreateUserDto){
+        
+        //Confirm email
+        if(createUserDto.email != createUserDto.confirmEmail) {
+            return "Please, confirm email";
+        }
+
+        //Confirm password
+        if(createUserDto.password != createUserDto.confirmPassword) {
+            return "Please, confirm password";
+        }
+
         const userDto = new UserDto();
         userDto.setUsername(createUserDto.username);
         userDto.setEmail(createUserDto.email);
@@ -33,7 +44,7 @@ export class UsersService {
         const profile = Profile.create(profileDto);
         await profile.save();
 
-        return user;
+        return "success"; //used key
     }
 
     async showById(id: number): Promise<User> {
@@ -41,6 +52,12 @@ export class UsersService {
 
         delete user.password;
         return user;
+    }
+
+    async showByUserId(userId: number): Promise<Profile> {
+        const profile = await this.findByUserId(userId);
+
+        return profile;
     }
 
     async findById(id: number) {
@@ -67,6 +84,14 @@ export class UsersService {
         });
     }
 
+    async findByUserId(userId: number) {
+        return await Profile.findOne({
+            where: {
+                userId: userId
+            }
+        });
+    }
+
     async findByLogin(login: string) {
         // Regular expression for basic email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -88,7 +113,7 @@ export class UsersService {
             if (user && bcrypt.compareSync(authUserDto.password, user.password)) {      
                 return user.id.toString();
             } else {
-                return "Wrong credentials";
+                return "wrong"; //used key
             }
         } catch (error) {
           console.error('Error during authentication:', error);

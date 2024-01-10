@@ -33,4 +33,10 @@ export class UsersController {
         console.log('Received id:', id);
         return this.usersService.showById(+id);
     }
+
+    @Get('profile/:id')
+    showProfile(@Param('id') id: string){
+        console.log('Received id:', id);
+        return this.usersService.showByUserId(+id);
+    }
 }

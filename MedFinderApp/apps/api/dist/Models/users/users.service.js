@@ -15,6 +15,12 @@ const profile_entity_1 = require("./Entities/profile.entity");
 const bcrypt = require("bcryptjs");
 let UsersService = class UsersService {
     async create(createUserDto) {
+        if (createUserDto.email != createUserDto.confirmEmail) {
+            return "Please, confirm email";
+        }
+        if (createUserDto.password != createUserDto.confirmPassword) {
+            return "Please, confirm password";
+        }
         const userDto = new user_dto_1.UserDto();
         userDto.setUsername(createUserDto.username);
         userDto.setEmail(createUserDto.email);
@@ -31,12 +37,16 @@ let UsersService = class UsersService {
         profileDto.setUserId(user.id);
         const profile = profile_entity_1.Profile.create(profileDto);
         await profile.save();
-        return user;
+        return "success";
     }
     async showById(id) {
         const user = await this.findById(id);
         delete user.password;
         return user;
+    }
+    async showByUserId(userId) {
+        const profile = await this.findByUserId(userId);
+        return profile;
     }
     async findById(id) {
         return await user_entity_1.User.findOne({
@@ -59,6 +69,13 @@ let UsersService = class UsersService {
             }
         });
     }
+    async findByUserId(userId) {
+        return await profile_entity_1.Profile.findOne({
+            where: {
+                userId: userId
+            }
+        });
+    }
     async findByLogin(login) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (emailRegex.test(login)) {
@@ -77,7 +94,7 @@ let UsersService = class UsersService {
                 return user.id.toString();
             }
             else {
-                return "Wrong credentials";
+                return "wrong";
             }
         }
         catch (error) {

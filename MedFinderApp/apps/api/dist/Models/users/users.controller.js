@@ -31,6 +31,10 @@ let UsersController = class UsersController {
         console.log('Received id:', id);
         return this.usersService.showById(+id);
     }
+    showProfile(id) {
+        console.log('Received id:', id);
+        return this.usersService.showByUserId(+id);
+    }
 };
 exports.UsersController = UsersController;
 __decorate([
@@ -54,6 +58,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "show", null);
+__decorate([
+    (0, common_1.Get)('profile/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "showProfile", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])
